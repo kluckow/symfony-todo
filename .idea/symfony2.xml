@@ -8,5 +8,7 @@
       </list>
     </option>
   </component>
+  <component name="Symfony2PluginSettings">
+    <option name="pluginEnabled" value="true" />
+  </component>
 </project>
-

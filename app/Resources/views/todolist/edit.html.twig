@@ -1,21 +1,94 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
+{% block maincontent %}
     <h1>Todolist edit</h1>
 
     {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+    {{ form_widget(edit_form.title) }}
+
+    <ul class="items list-group" data-prototype="{{ form_widget(edit_form.items.vars.prototype)|e('html_attr') }}">
+        {% for item in todoList.items %}
+            <li class="saved-item list-group-item {% if item.finished %}disabled{% endif %}">
+                {{ item.title }}
+                {#{% if item.finished %}#}
+                {#{% else %}#}
+                    {#<a href="{{ path('item_finish', { 'id': item.id }) }}">#}
+                        {#<span class="glyphicon glyphicon-trash"></span>#}
+                    {#</a>#}
+                {#{% endif %}#}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <input type="submit" value="Edit"/>
+    </form>
 
     <ul>
         <li>
             <a href="{{ path('todolist_index') }}">Back to the list</a>
         </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
     </ul>
+{% endblock %}
+{% block document_ready %}
+    <script>
+        var $collectionHolder;
+
+        var $addItemLink = $('<a href="#" class="add_item_link">Add an item</a>');
+        var $newLinkLi = $('<li></li>').append($addItemLink);
+
+        function addItemForm($itemCollectionHolder, $newLinkLi) {
+            var prototype = $itemCollectionHolder.data('prototype');
+
+            var index = $itemCollectionHolder.data('index');
+
+            var newForm = prototype.replace(/__name__/g, index);
+
+            $itemCollectionHolder.data('index', index + 1);
+
+            var $newFormLi = $('<li class="list-group-item"></li>').append(newForm);
+
+            $newFormLi.append('<a href="#" class="remove-item">delete</a>');
+
+            $newLinkLi.before($newFormLi);
+
+            $('.remove-item').click(function (e) {
+                e.preventDefault();
+
+                $(this).parent().remove();
+
+                return false;
+            });
+        }
+
+        function addItemFormDeleteLink($ItemFormLi) {
+            var $removeFormA = $('<a href="#">delete this item</a>');
+            $ItemFormLi.append($removeFormA);
+
+            $removeFormA.on('click', function (e) {
+                e.preventDefault();
+
+                $ItemFormLi.remove();
+            });
+        }
+
+
+        $(function () {
+
+            $itemCollectionHolder = $('ul.items');
+
+            $itemCollectionHolder.append($newLinkLi);
+
+            $itemCollectionHolder.find('li.saved-item').each(function () {
+                addItemFormDeleteLink($(this));
+            });
+
+            $itemCollectionHolder.data('index', $itemCollectionHolder.find('li').length);
+
+            $addItemLink.on('click', function (e) {
+                e.preventDefault();
+
+                addItemForm($itemCollectionHolder, $newLinkLi);
+            });
+        });
+    </script>
 {% endblock %}

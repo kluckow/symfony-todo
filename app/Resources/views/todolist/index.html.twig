@@ -1,39 +1,60 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Todolists list</h1>
+{% block maincontent %}
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for todoList in todoLists %}
-            <tr>
-                <td><a href="{{ path('todolist_show', { 'id': todoList.id }) }}">{{ todoList.id }}</a></td>
-                <td>{{ todoList.title }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('todolist_show', { 'id': todoList.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('todolist_edit', { 'id': todoList.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="col-sm-12">
 
-    <ul>
-        <li>
-            <a href="{{ path('todolist_new') }}">Create a new todoList</a>
-        </li>
-    </ul>
+            <h1>Meine Listen</h1>
+
+            <a class="btn btn-default pull-right" href="{{ path('todolist_new') }}">Neue Liste</a>
+
+        </div>
+
+        <div class="col-sm-12">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Erstellt am</th>
+                        <th>Aktion</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for list in todoLists %}
+                        <tr data-list-id=" {{ list.id }}">
+                            <td>{{ list.title }}</td>
+                            <td>{{ list.createdAt | date('d.m.Y') }}</td>
+                            <td>
+                                <a href="{{ path('todolist_edit', {'id':list.id}) }}">
+                                    <span class="glyphicon glyphicon-pencil"></span></a>
+                                <a href="#" data-list-id="{{ list.id }}" class="todolist-delete"><span class="glyphicon glyphicon-trash"></span></a>
+
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block document_ready %}
+    <script>
+        $(function() {
+           $('.todolist-delete').on('click', function(e) {
+               e.preventDefault();
+               var btn = $(this);
+               $.ajax({
+                   type: 'DELETE',
+                   url: '{{ app.request.baseUrl }}/todolist/' + btn.data('list-id'),
+                   success: function(response) {
+                       console.log(response);
+                       btn.parent().parent().remove();
+                   }
+               });
+           })
+        });
+    </script>
 {% endblock %}

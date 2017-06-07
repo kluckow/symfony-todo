@@ -6,6 +6,7 @@ use AppBundle\Entity\TodoList;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Todolist controller.
@@ -65,11 +66,8 @@ class TodoListController extends Controller
      */
     public function showAction(TodoList $todoList)
     {
-        $deleteForm = $this->createDeleteForm($todoList);
-
         return $this->render('todolist/show.html.twig', array(
-            'todoList' => $todoList,
-            'delete_form' => $deleteForm->createView(),
+            'todoList' => $todoList
         ));
     }
 
@@ -81,12 +79,13 @@ class TodoListController extends Controller
      */
     public function editAction(Request $request, TodoList $todoList)
     {
-        $deleteForm = $this->createDeleteForm($todoList);
         $editForm = $this->createForm('AppBundle\Form\TodoListType', $todoList);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($todoList);
+            $em->flush();
 
             return $this->redirectToRoute('todolist_edit', array('id' => $todoList->getId()));
         }
@@ -94,7 +93,6 @@ class TodoListController extends Controller
         return $this->render('todolist/edit.html.twig', array(
             'todoList' => $todoList,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -106,31 +104,10 @@ class TodoListController extends Controller
      */
     public function deleteAction(Request $request, TodoList $todoList)
     {
-        $form = $this->createDeleteForm($todoList);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($todoList);
+        $em->flush($todoList);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($todoList);
-            $em->flush($todoList);
-        }
-
-        return $this->redirectToRoute('todolist_index');
-    }
-
-    /**
-     * Creates a form to delete a todoList entity.
-     *
-     * @param TodoList $todoList The todoList entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(TodoList $todoList)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('todolist_delete', array('id' => $todoList->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
+        return new Response('success', 200);
     }
 }

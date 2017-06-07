@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
+{% block maincontent %}
     <h1>Todolist</h1>
 
     <table>
@@ -28,11 +28,6 @@
         </li>
         <li>
             <a href="{{ path('todolist_edit', { 'id': todoList.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
         </li>
     </ul>
 {% endblock %}

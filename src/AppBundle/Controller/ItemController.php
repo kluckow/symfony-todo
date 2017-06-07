@@ -74,6 +74,21 @@ class ItemController extends Controller
     }
 
     /**
+     * Finishes a item entity.
+     *
+     * @Route("/{id}", name="item_finish")
+     * @Method("GET")
+     */
+    public function finishAction(Item $item)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $item->setFinished(true);
+        $em->persist($item);
+        $em->flush();
+        return $this->redirectToRoute('item_index');
+    }
+
+    /**
      * Displays a form to edit an existing item entity.
      *
      * @Route("/{id}/edit", name="item_edit")

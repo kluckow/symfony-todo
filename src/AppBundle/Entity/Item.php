@@ -107,9 +107,27 @@ class Item
      *
      * @return bool
      */
-    public function getFinished()
+    public function isFinished()
     {
         return $this->finished;
+    }
+
+    /**
+     * @return \AppBundle\Entity\TodoList
+     */
+    public function getTodoList()
+    {
+        return $this->todoList;
+    }
+
+    /**
+     * @param \AppBundle\Entity\TodoList $todoList
+     * @return Item
+     */
+    public function setTodoList($todoList)
+    {
+        $this->todoList = $todoList;
+        return $this;
     }
 
 }
