@@ -83,6 +83,8 @@ class TodoListController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            dump($request->request->all());
+            die();
             $em = $this->getDoctrine()->getManager();
             $em->persist($todoList);
             $em->flush();

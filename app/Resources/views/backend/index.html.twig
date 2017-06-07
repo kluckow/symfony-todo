@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block maincontent %}
+
+    <h1>Options</h1>
+
+    <ul>
+        <li>
+            <a href="{{ path('backend_list_stores_index') }}">Show Store List</a>
+        </li>
+        <li>
+            <a href="{{ path('backend_new_store') }}">New store</a>
+        </li>
+    </ul>
+
+{% endblock %}

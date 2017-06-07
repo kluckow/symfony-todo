@@ -9,7 +9,7 @@
     <ul class="items list-group" data-prototype="{{ form_widget(edit_form.items.vars.prototype)|e('html_attr') }}">
         {% for item in todoList.items %}
             <li class="saved-item list-group-item {% if item.finished %}disabled{% endif %}">
-                {{ item.title }}
+                {{ form_widget(edit_form.+) }}
                 {#{% if item.finished %}#}
                 {#{% else %}#}
                     {#<a href="{{ path('item_finish', { 'id': item.id }) }}">#}
@@ -20,7 +20,9 @@
         {% endfor %}
     </ul>
 
+    {{ form_widget(edit_form._token) }}
     <input type="submit" value="Edit"/>
+
     </form>
 
     <ul>
