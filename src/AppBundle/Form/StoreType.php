@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,10 +17,14 @@ class StoreType extends AbstractType
         $builder
             ->add('name')
             ->add('address')
-            ->add('longitude')
-            ->add('latitude')
+            ->add('longitude', TextType::class, array(
+                'required' => false
+            ))
+            ->add('latitude', TextType::class, array(
+                'required' => false
+            ))
             ->add('city')
-            ->add('zipCode')        ;
+            ->add('zipCode');
     }
     
     /**

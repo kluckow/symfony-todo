@@ -1,0 +1,30 @@
+#map-container
+{
+    height: 500px;
+}
+.store-title
+{
+    font-size: 30px;
+    font-weight: bold;
+}
+.store-item
+{
+    background: #FFE4C4;
+    margin: 5px;
+}
+.store-list
+{
+    margin-top: 30px;
+}
+.store-img
+{
+    height: 100px;
+}
+.store-address
+{
+
+}
+.store-lat-lng
+{
+
+}

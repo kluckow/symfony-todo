@@ -1,49 +1,60 @@
 {% extends 'base.html.twig' %}
 
 {% block maincontent %}
-    <h1>Stores list</h1>
+    <h1>Store Locations</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Address</th>
-                <th>Longitude</th>
-                <th>Latitude</th>
-                <th>City</th>
-                <th>Zipcode</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for store in stores %}
-            <tr>
-                <td><a href="{{ path('store_show', { 'id': store.id }) }}">{{ store.id }}</a></td>
-                <td>{{ store.name }}</td>
-                <td>{{ store.address }}</td>
-                <td>{{ store.longitude }}</td>
-                <td>{{ store.latitude }}</td>
-                <td>{{ store.city }}</td>
-                <td>{{ store.zipCode }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('store_show', { 'id': store.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('store_edit', { 'id': store.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="row">
+        <div id="map-container" class="col-sm-12"></div>
+    </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('store_new') }}">Create a new store</a>
-        </li>
-    </ul>
+    <div class="row store-list">
+    {% for store in stores %}
+        <div class="col-sm-3 col-md-3 col-md-4 store-item">
+            <span class="col-sm-12 store-title">{{ store.name }}</span>
+            <img class="col-sm-12 store-img" src="#" alt="here comes the image"/>
+            <span class="col-sm-12 store-address">{{ store.address }}, {{ store.zipCode }} {{ store.city }}</span>
+            <span class="col-sm-12 store-lat-lng address">Latitude: {{ store.latitude }}, Longitude: {{ store.longitude}}</span>
+        </div>
+    {% endfor %}
+    </div>
+
+{% endblock %}
+
+{% block document_ready %}
+
+    <script>
+
+        function initMap() {
+
+            var locations = [
+                    {% for store in stores %}
+                    ['{{ store.name }}', {{ store.latitude }}, {{ store.longitude }}],
+                    {% endfor %}
+            ];
+
+            var map = new google.maps.Map(document.getElementById('map-container'), {
+                zoom: 10,
+                center: new google.maps.LatLng(locations[0][1], locations[0][2]),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+            var infowindow = new google.maps.InfoWindow();
+            var marker, i;
+            for (i = 0; i < locations.length; i++) {
+                marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                    map: map
+                });
+                google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                    return function() {
+                        infowindow.setContent(locations[i][0]);
+                        infowindow.open(map, marker);
+                    }
+                })(marker, i));
+            }
+
+        }
+
+    </script>
+    <script async defer src="http://maps.google.com/maps/api/js?sensor=false&key=AIzaSyBg-Smi1IDeDHuwDvBP_IESJa-y2NA4rBM&callback=initMap"></script>
+
 {% endblock %}
