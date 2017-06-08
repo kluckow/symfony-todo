@@ -56,6 +56,9 @@ class BackendController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            // calc latitude and langitude
+            $store = $this->calcLatLng($store);
             $em->persist($store);
             $em->flush($store);
 
@@ -86,7 +89,7 @@ class BackendController extends Controller
             return $this->redirectToRoute('backend_list_stores_index');
         }
 
-        return $this->render('store/edit.html.twig', array(
+        return $this->render(':backend/store:edit.html.twig', array(
             'store' => $store,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -126,6 +129,27 @@ class BackendController extends Controller
             ->setAction($this->generateUrl('backend_store_delete', array('id' => $store->getId())))
             ->setMethod('DELETE')
             ->getForm();
+    }
+
+    /**
+     * Calculates the latitude and longitude for a store.
+     *
+     * @param Store $store
+     * @return Store
+     */
+    private function calcLatLng(\AppBundle\Entity\Store $store)
+    {
+        $address = $store->getAddress();
+        $address = str_replace(" ", "+", $address);
+
+        $json = file_get_contents("https://maps.google.com/maps/api/geocode/json?address=".$address."&sensor=false&key=AIzaSyBg-Smi1IDeDHuwDvBP_IESJa-y2NA4rBM");
+        $json = json_decode($json);
+        $lat = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lat'};
+        $store->setLatitude($lat);
+        $long = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lng'};
+        $store->setLongitude($long);
+
+        return $store;
     }
 
 }
