@@ -1,0 +1,107 @@
+<svg class="img-responsive" id="state_machine-klarna" width="878pt" height="322pt"
+ viewBox="0.00 0.00 878.00 322.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 318)">
+<title>workflow</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-318 874,-318 874,4 -4,4"/>
+<!-- place_created -->
+<g id="node1" class="node"><title>place_created</title>
+<ellipse fill="lightblue" stroke="#333333" cx="57.5" cy="-123.5" rx="57.5" ry="57.5"/>
+<text text-anchor="middle" x="57.5" y="-121.3" font-family="Arial" font-size="9.00">created</text>
+</g>
+<!-- transition_activate -->
+<g id="node6" class="node"><title>transition_activate</title>
+<polygon fill="none" stroke="#333333" points="266,-248 151,-248 151,-133 266,-133 266,-248"/>
+<text text-anchor="middle" x="208.5" y="-188.3" font-family="Arial" font-size="9.00">activate</text>
+</g>
+<!-- place_created&#45;&gt;transition_activate -->
+<g id="edge1" class="edge"><title>place_created&#45;&gt;transition_activate</title>
+<path fill="none" stroke="#333333" d="M110.195,-146.745C121.77,-151.95 134.159,-157.521 146.085,-162.884"/>
+<polygon fill="#333333" stroke="#333333" points="145.53,-164.553 150.808,-165.007 146.965,-161.361 145.53,-164.553"/>
+</g>
+<!-- transition_cancel -->
+<g id="node7" class="node"><title>transition_cancel</title>
+<polygon fill="none" stroke="#333333" points="266,-115 151,-115 151,-0 266,-0 266,-115"/>
+<text text-anchor="middle" x="208.5" y="-55.3" font-family="Arial" font-size="9.00">cancel</text>
+</g>
+<!-- place_created&#45;&gt;transition_cancel -->
+<g id="edge3" class="edge"><title>place_created&#45;&gt;transition_cancel</title>
+<path fill="none" stroke="#333333" d="M110.613,-100.416C122.096,-95.3298 134.362,-89.8967 146.172,-84.6656"/>
+<polygon fill="#333333" stroke="#333333" points="146.985,-86.2195 150.847,-82.5944 145.567,-83.0194 146.985,-86.2195"/>
+</g>
+<!-- place_activated -->
+<g id="node2" class="node"><title>place_activated</title>
+<ellipse fill="none" stroke="#333333" cx="359.5" cy="-190.5" rx="57.5" ry="57.5"/>
+<text text-anchor="middle" x="359.5" y="-188.3" font-family="Arial" font-size="9.00">activated</text>
+</g>
+<!-- transition_complete_refund -->
+<g id="node8" class="node"><title>transition_complete_refund</title>
+<polygon fill="none" stroke="#333333" points="568,-314 453,-314 453,-199 568,-199 568,-314"/>
+<text text-anchor="middle" x="510.5" y="-254.3" font-family="Arial" font-size="9.00">complete_refund</text>
+</g>
+<!-- place_activated&#45;&gt;transition_complete_refund -->
+<g id="edge5" class="edge"><title>place_activated&#45;&gt;transition_complete_refund</title>
+<path fill="none" stroke="#333333" d="M412.613,-213.584C424.096,-218.67 436.362,-224.103 448.172,-229.334"/>
+<polygon fill="#333333" stroke="#333333" points="447.567,-230.981 452.847,-231.406 448.985,-227.78 447.567,-230.981"/>
+</g>
+<!-- transition_partial_refund -->
+<g id="node9" class="node"><title>transition_partial_refund</title>
+<polygon fill="none" stroke="#333333" points="568,-181 453,-181 453,-66 568,-66 568,-181"/>
+<text text-anchor="middle" x="510.5" y="-121.3" font-family="Arial" font-size="9.00">partial_refund</text>
+</g>
+<!-- place_activated&#45;&gt;transition_partial_refund -->
+<g id="edge7" class="edge"><title>place_activated&#45;&gt;transition_partial_refund</title>
+<path fill="none" stroke="#333333" d="M412.195,-167.255C423.77,-162.05 436.159,-156.479 448.085,-151.116"/>
+<polygon fill="#333333" stroke="#333333" points="448.965,-152.639 452.808,-148.993 447.53,-149.447 448.965,-152.639"/>
+</g>
+<!-- place_cancelled -->
+<g id="node3" class="node"><title>place_cancelled</title>
+<ellipse fill="none" stroke="#333333" cx="359.5" cy="-57.5" rx="57.5" ry="57.5"/>
+<text text-anchor="middle" x="359.5" y="-55.3" font-family="Arial" font-size="9.00">cancelled</text>
+</g>
+<!-- place_partially_refunded -->
+<g id="node4" class="node"><title>place_partially_refunded</title>
+<ellipse fill="none" stroke="#333333" cx="661.5" cy="-123.5" rx="57.5" ry="57.5"/>
+<text text-anchor="middle" x="661.5" y="-121.3" font-family="Arial" font-size="9.00">partially_refunded</text>
+</g>
+<!-- transition_final_partial_refund -->
+<g id="node10" class="node"><title>transition_final_partial_refund</title>
+<polygon fill="none" stroke="#333333" points="870,-181 755,-181 755,-66 870,-66 870,-181"/>
+<text text-anchor="middle" x="812.5" y="-121.3" font-family="Arial" font-size="9.00">final_partial_refund</text>
+</g>
+<!-- place_partially_refunded&#45;&gt;transition_final_partial_refund -->
+<g id="edge9" class="edge"><title>place_partially_refunded&#45;&gt;transition_final_partial_refund</title>
+<path fill="none" stroke="#333333" d="M718.831,-116.932C728.796,-116.729 739.223,-116.696 749.338,-116.833"/>
+<polygon fill="#333333" stroke="#333333" points="749.566,-118.587 754.595,-116.92 749.625,-115.087 749.566,-118.587"/>
+</g>
+<!-- place_refunded -->
+<g id="node5" class="node"><title>place_refunded</title>
+<ellipse fill="none" stroke="#333333" cx="661.5" cy="-256.5" rx="57.5" ry="57.5"/>
+<text text-anchor="middle" x="661.5" y="-254.3" font-family="Arial" font-size="9.00">refunded</text>
+</g>
+<!-- transition_activate&#45;&gt;place_activated -->
+<g id="edge2" class="edge"><title>transition_activate&#45;&gt;place_activated</title>
+<path fill="none" stroke="#333333" d="M266.256,-190.5C276.2,-190.5 286.593,-190.5 296.667,-190.5"/>
+<polygon fill="#333333" stroke="#333333" points="296.902,-192.25 301.902,-190.5 296.902,-188.75 296.902,-192.25"/>
+</g>
+<!-- transition_cancel&#45;&gt;place_cancelled -->
+<g id="edge4" class="edge"><title>transition_cancel&#45;&gt;place_cancelled</title>
+<path fill="none" stroke="#333333" d="M266.256,-57.5C276.2,-57.5 286.593,-57.5 296.667,-57.5"/>
+<polygon fill="#333333" stroke="#333333" points="296.902,-59.2501 301.902,-57.5 296.902,-55.7501 296.902,-59.2501"/>
+</g>
+<!-- transition_complete_refund&#45;&gt;place_refunded -->
+<g id="edge6" class="edge"><title>transition_complete_refund&#45;&gt;place_refunded</title>
+<path fill="none" stroke="#333333" d="M568.256,-256.5C578.2,-256.5 588.593,-256.5 598.667,-256.5"/>
+<polygon fill="#333333" stroke="#333333" points="598.902,-258.25 603.902,-256.5 598.902,-254.75 598.902,-258.25"/>
+</g>
+<!-- transition_partial_refund&#45;&gt;place_partially_refunded -->
+<g id="edge8" class="edge"><title>transition_partial_refund&#45;&gt;place_partially_refunded</title>
+<path fill="none" stroke="#333333" d="M568.256,-123.5C578.2,-123.5 588.593,-123.5 598.667,-123.5"/>
+<polygon fill="#333333" stroke="#333333" points="598.902,-125.25 603.902,-123.5 598.902,-121.75 598.902,-125.25"/>
+</g>
+<!-- transition_final_partial_refund&#45;&gt;place_partially_refunded -->
+<g id="edge10" class="edge"><title>transition_final_partial_refund&#45;&gt;place_partially_refunded</title>
+<path fill="none" stroke="#333333" d="M754.595,-130.08C744.612,-130.276 734.182,-130.303 724.08,-130.159"/>
+<polygon fill="#333333" stroke="#333333" points="723.86,-128.405 718.831,-130.068 723.8,-131.904 723.86,-128.405"/>
+</g>
+</g>
+</svg>

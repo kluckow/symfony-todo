@@ -1,0 +1,100 @@
+# Transitions used in workflows:
+# - activate
+# - cancel
+# - partial_refund, additional_partial_refund, final_partial_refund, complete_refund
+
+# Notices:
+# - state_matchine workflows can only contain a single "to" state, but multiple "from" states
+
+framework:
+    workflows:
+        paypal:
+            supports:
+                - AppBundle\Entity\Payment\Payment
+            type: state_machine
+            places:
+                # payment status may be reserved in some cases which results in paypal-payment-status => null
+                # TODO: implement update of payment status on some event, else payment status will never get out of "reserved" and cannot be processed, even if it should be
+                - reserved
+                - completed
+                - partially_refunded
+                - refunded
+            # renames $marking property to
+            marking_store:
+                # type: "single_state" OR "multiple_state" defines if marking (=> paymentStatus) property is "string" or "json_array"
+                type: "single_state"
+#                arguments: ['externalProviderPaymentStatus']
+                arguments:
+                    - 'externalProviderPaymentStatus'
+            transitions:
+                partial_refund:
+                    from: completed
+                    to: partially_refunded
+                additional_partial_refund:
+                    from: partially_refunded
+                    to: partially_refunded
+                final_partial_refund:
+                    from: partially_refunded
+                    to: refunded
+                complete_refund:
+                    from: completed
+                    to: refunded
+        billpay:
+            supports:
+                - AppBundle\Entity\Payment\Payment
+            type: state_machine
+            places:
+                - inactive
+                - activated
+                - partially_refunded
+                - refunded
+            # renames $marking property to
+            marking_store:
+                # type: "single_state" OR "multiple_state" defines if $marking (=> $paymentStatus) property is "string" or "json_array"
+                arguments: ['externalProviderPaymentStatus']
+            transitions:
+                activate:
+                    from: inactive
+                    to: activated
+                complete_refund:
+                    from: [inactive, activated]
+                    to: refunded
+                partial_refund:
+                    from: [inactive, activated]
+                    to: partially_refunded
+                additional_partial_refund:
+                    from: partially_refunded
+                    to: partially_refunded
+                final_partial_refund:
+                    from: partially_refunded
+                    to: refunded
+        klarna:
+            supports:
+                - AppBundle\Entity\Payment\Payment
+            type: state_machine
+            places:
+                - created
+                - activated
+                - cancelled
+                - partially_refunded
+                - refunded
+            # renames $marking property to
+            marking_store:
+                # type: "single_state" OR "multiple_state" defines if marking (=> paymentStatus) property is "string" or "json_array"
+                arguments: ['externalProviderPaymentStatus']
+            transitions:
+                activate:
+                    from: created
+                    to: activated
+                cancel:
+                    from: created
+                    to: cancelled
+                complete_refund:
+                    from: activated
+                    to: refunded
+                partial_refund:
+                    from: activated
+                    to: partially_refunded
+                final_partial_refund:
+                    from: partially_refunded
+                    to: partially_refunded

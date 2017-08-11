@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+{% for transition in transitionArray %}
+    {% for transition_entry in transition %}
+
+
+        {{ dump(transition_entry) }}
+    {% endfor %}
+{% endfor %}
+{% endblock body %}
