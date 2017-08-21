@@ -39,8 +39,6 @@ class PaymentStatusController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $paymentStatuses = $em->getRepository('AppBundle:Payment\PaymentStatus')->findAll();
-
         return $this->render('klarna/doc.svg.twig');
     }
 

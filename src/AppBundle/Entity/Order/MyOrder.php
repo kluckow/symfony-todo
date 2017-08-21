@@ -43,6 +43,20 @@ class MyOrder
     private $paymentStatus;
 
     /**
+     * Marking
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $workflowPaymentStatus;
+
+    /**
+     * Marking
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $workflowRefundStatus;
+
+    /**
      * @return float
      */
     public function getBrutto()
@@ -87,5 +101,42 @@ class MyOrder
     {
         return $this->id;
     }
+
+    /**
+     * @return string
+     */
+    public function getWorkflowPaymentStatus()
+    {
+        return $this->workflowPaymentStatus;
+    }
+
+    /**
+     * @param string $workflowPaymentStatus
+     * @return MyOrder
+     */
+    public function setWorkflowPaymentStatus($workflowPaymentStatus)
+    {
+        $this->workflowPaymentStatus = $workflowPaymentStatus;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getWorkflowRefundStatus()
+    {
+        return $this->workflowRefundStatus;
+    }
+
+    /**
+     * @param string $workflowRefundStatus
+     * @return MyOrder
+     */
+    public function setWorkflowRefundStatus($workflowRefundStatus)
+    {
+        $this->workflowRefundStatus = $workflowRefundStatus;
+        return $this;
+    }
+
 }
 

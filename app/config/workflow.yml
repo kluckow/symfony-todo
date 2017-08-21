@@ -1,11 +1,9 @@
-# Transitions used in workflows:
-# - activate
-# - cancel
-# - partial_refund, additional_partial_refund, final_partial_refund, complete_refund
+# CONSOLE COMMAND:
+# php bin/console workflow:build:svg <workflow_type>.<workflow>
 
 # Notices:
 # - state_matchine workflows can only contain a single "to" state, but multiple "from" states
-
+# - workflow workflows may have multiple "to" states
 framework:
     workflows:
         paypal:
@@ -19,11 +17,10 @@ framework:
                 - completed
                 - partially_refunded
                 - refunded
+            initial_place: reserved
             # renames $marking property to
             marking_store:
-                # type: "single_state" OR "multiple_state" defines if marking (=> paymentStatus) property is "string" or "json_array"
-                type: "single_state"
-#                arguments: ['externalProviderPaymentStatus']
+                type: "single_state" #OR "multiple_state" defines if marking (=> paymentStatus) property is "string" or "json_array"
                 arguments:
                     - 'externalProviderPaymentStatus'
             transitions:
@@ -48,19 +45,21 @@ framework:
                 - activated
                 - partially_refunded
                 - refunded
+            initial_place: inactive
             # renames $marking property to
             marking_store:
-                # type: "single_state" OR "multiple_state" defines if $marking (=> $paymentStatus) property is "string" or "json_array"
-                arguments: ['externalProviderPaymentStatus']
+                type: "single_state" #OR "multiple_state" defines if marking (=> paymentStatus) property is "string" or "json_array"
+                arguments:
+                    - 'externalProviderPaymentStatus'
             transitions:
                 activate:
                     from: inactive
                     to: activated
                 complete_refund:
-                    from: [inactive, activated]
+                    from: activated
                     to: refunded
                 partial_refund:
-                    from: [inactive, activated]
+                    from: activated
                     to: partially_refunded
                 additional_partial_refund:
                     from: partially_refunded
@@ -73,21 +72,23 @@ framework:
                 - AppBundle\Entity\Payment\Payment
             type: state_machine
             places:
-                - created
+                - inactive
                 - activated
                 - cancelled
                 - partially_refunded
                 - refunded
+            initial_place: inactive
             # renames $marking property to
             marking_store:
-                # type: "single_state" OR "multiple_state" defines if marking (=> paymentStatus) property is "string" or "json_array"
-                arguments: ['externalProviderPaymentStatus']
+                type: "single_state" #OR "multiple_state" defines if marking (=> paymentStatus) property is "string" or "json_array"
+                arguments:
+                    - 'externalProviderPaymentStatus'
             transitions:
                 activate:
-                    from: created
+                    from: inactive
                     to: activated
                 cancel:
-                    from: created
+                    from: inactive
                     to: cancelled
                 complete_refund:
                     from: activated
@@ -95,6 +96,72 @@ framework:
                 partial_refund:
                     from: activated
                     to: partially_refunded
-                final_partial_refund:
+                additional_partial_refund:
                     from: partially_refunded
                     to: partially_refunded
+                final_partial_refund:
+                    from: partially_refunded
+                    to: refunded
+        refund:
+            supports:
+                - AppBundle\Entity\Payment\Refund
+            type: state_machine
+            places:
+                - open
+                - completed
+            initial_place: open
+            # renames $marking property to
+            marking_store:
+                type: "single_state" #OR "multiple_state" defines if marking (=> paymentStatus) property is "string" or "json_array"
+                arguments:
+                    - 'refundStatus'
+            transitions:
+                complete:
+                    from: open
+                    to: completed
+        order_payment_status:
+            supports:
+                - AppBundle\Entity\Order\MyOrder
+            type: state_machine
+            places:
+                - open
+                - partially_paid
+                - paid
+            initial_place: open
+            marking_store:
+                type: "single_state"
+                arguments:
+                    - 'workflowPaymentStatus'
+            transitions:
+                partial_payment:
+                    from: open
+                    to: partially_paid
+                complete_payment:
+                    from: open
+                    to: paid
+                final_partial_payment:
+                    from: partially_paid
+                    to: paid
+        order_refund_status:
+            supports:
+                - AppBundle\Entity\Order\MyOrder
+            type: state_machine
+            places:
+                - open
+                - partially_refunded
+                - refunded
+            initial_place: open
+            marking_store:
+                type: "single_state"
+                arguments:
+                    - 'workflowRefundStatus'
+            transitions:
+                partial_refund:
+                    from: open
+                    to: partially_refunded
+                complete_refund:
+                    from: open
+                    to: refunded
+                final_partial_refund:
+                    from: partially_refunded
+                    to: refunded

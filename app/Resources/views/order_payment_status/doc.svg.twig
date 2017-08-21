@@ -1,0 +1,67 @@
+<svg class="img-responsive" id="state_machine-order_payment_status" width="727pt" height="256pt"
+ viewBox="0.00 0.00 727.00 256.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 252)">
+<title>workflow</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-252 723,-252 723,4 -4,4"/>
+<!-- place_open -->
+<g id="node1" class="node"><title>place_open</title>
+<ellipse fill="lightblue" stroke="#333333" cx="57.5" cy="-129.5" rx="57.5" ry="57.5"/>
+<text text-anchor="middle" x="57.5" y="-127.3" font-family="Arial" font-size="9.00">open</text>
+</g>
+<!-- transition_partial_payment -->
+<g id="node4" class="node"><title>transition_partial_payment</title>
+<polygon fill="none" stroke="#333333" points="266,-236 151,-236 151,-121 266,-121 266,-236"/>
+<text text-anchor="middle" x="208.5" y="-176.3" font-family="Arial" font-size="9.00">partial_payment</text>
+</g>
+<!-- place_open&#45;&gt;transition_partial_payment -->
+<g id="edge1" class="edge"><title>place_open&#45;&gt;transition_partial_payment</title>
+<path fill="none" stroke="#333333" d="M112.292,-147.19C123.233,-150.788 134.821,-154.599 146.005,-158.277"/>
+<polygon fill="#333333" stroke="#333333" points="145.475,-159.945 150.771,-159.844 146.568,-156.62 145.475,-159.945"/>
+</g>
+<!-- transition_complete_payment -->
+<g id="node5" class="node"><title>transition_complete_payment</title>
+<polygon fill="none" stroke="#333333" points="417,-115 302,-115 302,-0 417,-0 417,-115"/>
+<text text-anchor="middle" x="359.5" y="-55.3" font-family="Arial" font-size="9.00">complete_payment</text>
+</g>
+<!-- place_open&#45;&gt;transition_complete_payment -->
+<g id="edge3" class="edge"><title>place_open&#45;&gt;transition_complete_payment</title>
+<path fill="none" stroke="#333333" d="M113.525,-116.294C165.307,-103.866 242.743,-85.2816 296.645,-72.3453"/>
+<polygon fill="#333333" stroke="#333333" points="297.332,-73.98 301.786,-71.1114 296.515,-70.5767 297.332,-73.98"/>
+</g>
+<!-- place_partially_paid -->
+<g id="node2" class="node"><title>place_partially_paid</title>
+<ellipse fill="none" stroke="#333333" cx="359.5" cy="-190.5" rx="57.5" ry="57.5"/>
+<text text-anchor="middle" x="359.5" y="-188.3" font-family="Arial" font-size="9.00">partially_paid</text>
+</g>
+<!-- transition_final_partial_payment -->
+<g id="node6" class="node"><title>transition_final_partial_payment</title>
+<polygon fill="none" stroke="#333333" points="568,-236 453,-236 453,-121 568,-121 568,-236"/>
+<text text-anchor="middle" x="510.5" y="-176.3" font-family="Arial" font-size="9.00">final_partial_payment</text>
+</g>
+<!-- place_partially_paid&#45;&gt;transition_final_partial_payment -->
+<g id="edge5" class="edge"><title>place_partially_paid&#45;&gt;transition_final_partial_payment</title>
+<path fill="none" stroke="#333333" d="M416.831,-185.963C426.796,-185.161 437.223,-184.321 447.338,-183.506"/>
+<polygon fill="#333333" stroke="#333333" points="447.752,-185.229 452.595,-183.083 447.47,-181.74 447.752,-185.229"/>
+</g>
+<!-- place_paid -->
+<g id="node3" class="node"><title>place_paid</title>
+<ellipse fill="none" stroke="#333333" cx="661.5" cy="-129.5" rx="57.5" ry="57.5"/>
+<text text-anchor="middle" x="661.5" y="-127.3" font-family="Arial" font-size="9.00">paid</text>
+</g>
+<!-- transition_partial_payment&#45;&gt;place_partially_paid -->
+<g id="edge2" class="edge"><title>transition_partial_payment&#45;&gt;place_partially_paid</title>
+<path fill="none" stroke="#333333" d="M266.256,-183.071C276.2,-183.872 286.593,-184.709 296.667,-185.52"/>
+<polygon fill="#333333" stroke="#333333" points="296.778,-187.285 301.902,-185.942 297.059,-183.796 296.778,-187.285"/>
+</g>
+<!-- transition_complete_payment&#45;&gt;place_paid -->
+<g id="edge4" class="edge"><title>transition_complete_payment&#45;&gt;place_paid</title>
+<path fill="none" stroke="#333333" d="M417.28,-71.1273C469.611,-83.6866 547.02,-102.265 600.384,-115.072"/>
+<polygon fill="#333333" stroke="#333333" points="600.201,-116.828 605.471,-116.293 601.018,-113.424 600.201,-116.828"/>
+</g>
+<!-- transition_final_partial_payment&#45;&gt;place_paid -->
+<g id="edge6" class="edge"><title>transition_final_partial_payment&#45;&gt;place_paid</title>
+<path fill="none" stroke="#333333" d="M568.256,-159.835C579.096,-156.27 590.469,-152.53 601.381,-148.942"/>
+<polygon fill="#333333" stroke="#333333" points="602.156,-150.529 606.359,-147.305 601.062,-147.205 602.156,-150.529"/>
+</g>
+</g>
+</svg>
