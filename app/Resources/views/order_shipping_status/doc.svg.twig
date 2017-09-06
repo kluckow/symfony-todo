@@ -1,0 +1,97 @@
+<svg class="img-responsive" id="state_machine-order_shipping_status" width="878pt" height="295pt"
+ viewBox="0.00 0.00 878.00 295.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 291)">
+<title>workflow</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-291 874,-291 874,4 -4,4"/>
+<!-- place_unshipped -->
+<g id="node1" class="node"><title>place_unshipped</title>
+<ellipse fill="lightblue" stroke="#333333" cx="57.5" cy="-129.5" rx="57.5" ry="57.5"/>
+<text text-anchor="middle" x="57.5" y="-127.3" font-family="Arial" font-size="9.00">unshipped</text>
+</g>
+<!-- transition_ship -->
+<g id="node4" class="node"><title>transition_ship</title>
+<polygon fill="none" stroke="#333333" points="266,-236 151,-236 151,-121 266,-121 266,-236"/>
+<text text-anchor="middle" x="208.5" y="-176.3" font-family="Arial" font-size="9.00">ship</text>
+</g>
+<!-- place_unshipped&#45;&gt;transition_ship -->
+<g id="edge1" class="edge"><title>place_unshipped&#45;&gt;transition_ship</title>
+<path fill="none" stroke="#333333" d="M112.292,-147.19C123.233,-150.788 134.821,-154.599 146.005,-158.277"/>
+<polygon fill="#333333" stroke="#333333" points="145.475,-159.945 150.771,-159.844 146.568,-156.62 145.475,-159.945"/>
+</g>
+<!-- transition_partial_ship -->
+<g id="node5" class="node"><title>transition_partial_ship</title>
+<polygon fill="none" stroke="#333333" points="417,-115 302,-115 302,-0 417,-0 417,-115"/>
+<text text-anchor="middle" x="359.5" y="-55.3" font-family="Arial" font-size="9.00">partial_ship</text>
+</g>
+<!-- place_unshipped&#45;&gt;transition_partial_ship -->
+<g id="edge3" class="edge"><title>place_unshipped&#45;&gt;transition_partial_ship</title>
+<path fill="none" stroke="#333333" d="M113.525,-116.294C165.307,-103.866 242.743,-85.2816 296.645,-72.3453"/>
+<polygon fill="#333333" stroke="#333333" points="297.332,-73.98 301.786,-71.1114 296.515,-70.5767 297.332,-73.98"/>
+</g>
+<!-- place_partially_shipped -->
+<g id="node2" class="node"><title>place_partially_shipped</title>
+<ellipse fill="none" stroke="#333333" cx="661.5" cy="-96.5" rx="57.5" ry="57.5"/>
+<text text-anchor="middle" x="661.5" y="-94.3" font-family="Arial" font-size="9.00">partially_shipped</text>
+</g>
+<!-- transition_additional_partial_ship -->
+<g id="node6" class="node"><title>transition_additional_partial_ship</title>
+<polygon fill="none" stroke="#333333" points="870,-154 755,-154 755,-39 870,-39 870,-154"/>
+<text text-anchor="middle" x="812.5" y="-94.3" font-family="Arial" font-size="9.00">additional_partial_ship</text>
+</g>
+<!-- place_partially_shipped&#45;&gt;transition_additional_partial_ship -->
+<g id="edge5" class="edge"><title>place_partially_shipped&#45;&gt;transition_additional_partial_ship</title>
+<path fill="none" stroke="#333333" d="M718.831,-89.9317C728.796,-89.7287 739.223,-89.6958 749.338,-89.833"/>
+<polygon fill="#333333" stroke="#333333" points="749.566,-91.5869 754.595,-89.9202 749.625,-88.0874 749.566,-91.5869"/>
+</g>
+<!-- transition_final_ship -->
+<g id="node7" class="node"><title>transition_final_ship</title>
+<polygon fill="none" stroke="#333333" points="870,-287 755,-287 755,-172 870,-172 870,-287"/>
+<text text-anchor="middle" x="812.5" y="-227.3" font-family="Arial" font-size="9.00">final_ship</text>
+</g>
+<!-- place_partially_shipped&#45;&gt;transition_final_ship -->
+<g id="edge7" class="edge"><title>place_partially_shipped&#45;&gt;transition_final_ship</title>
+<path fill="none" stroke="#333333" d="M705.197,-134.612C719.467,-147.35 735.653,-161.798 751.015,-175.51"/>
+<polygon fill="#333333" stroke="#333333" points="750.005,-176.954 754.901,-178.978 752.336,-174.343 750.005,-176.954"/>
+</g>
+<!-- place_shipped -->
+<g id="node3" class="node"><title>place_shipped</title>
+<ellipse fill="none" stroke="#333333" cx="359.5" cy="-190.5" rx="57.5" ry="57.5"/>
+<text text-anchor="middle" x="359.5" y="-188.3" font-family="Arial" font-size="9.00">shipped</text>
+</g>
+<!-- transition_change_order -->
+<g id="node8" class="node"><title>transition_change_order</title>
+<polygon fill="none" stroke="#333333" points="568,-201 453,-201 453,-86 568,-86 568,-201"/>
+<text text-anchor="middle" x="510.5" y="-141.3" font-family="Arial" font-size="9.00">change_order</text>
+</g>
+<!-- place_shipped&#45;&gt;transition_change_order -->
+<g id="edge9" class="edge"><title>place_shipped&#45;&gt;transition_change_order</title>
+<path fill="none" stroke="#333333" d="M414.714,-173.399C425.465,-170.008 436.827,-166.424 447.806,-162.961"/>
+<polygon fill="#333333" stroke="#333333" points="448.578,-164.552 452.82,-161.379 447.525,-161.214 448.578,-164.552"/>
+</g>
+<!-- transition_ship&#45;&gt;place_shipped -->
+<g id="edge2" class="edge"><title>transition_ship&#45;&gt;place_shipped</title>
+<path fill="none" stroke="#333333" d="M266.256,-183.071C276.2,-183.872 286.593,-184.709 296.667,-185.52"/>
+<polygon fill="#333333" stroke="#333333" points="296.778,-187.285 301.902,-185.942 297.059,-183.796 296.778,-187.285"/>
+</g>
+<!-- transition_partial_ship&#45;&gt;place_partially_shipped -->
+<g id="edge4" class="edge"><title>transition_partial_ship&#45;&gt;place_partially_shipped</title>
+<path fill="none" stroke="#333333" d="M417.09,-60.8166C458.935,-63.7212 517.225,-68.7157 568,-76.5 578.563,-78.1193 589.729,-80.2068 600.51,-82.42"/>
+<polygon fill="#333333" stroke="#333333" points="600.181,-84.1389 605.433,-83.4444 600.894,-80.7124 600.181,-84.1389"/>
+</g>
+<!-- transition_additional_partial_ship&#45;&gt;place_partially_shipped -->
+<g id="edge6" class="edge"><title>transition_additional_partial_ship&#45;&gt;place_partially_shipped</title>
+<path fill="none" stroke="#333333" d="M754.595,-103.08C744.612,-103.276 734.182,-103.303 724.08,-103.159"/>
+<polygon fill="#333333" stroke="#333333" points="723.86,-101.405 718.831,-103.068 723.8,-104.904 723.86,-101.405"/>
+</g>
+<!-- transition_final_ship&#45;&gt;place_shipped -->
+<g id="edge8" class="edge"><title>transition_final_ship&#45;&gt;place_shipped</title>
+<path fill="none" stroke="#333333" d="M754.737,-229.287C683.835,-228.381 558.947,-224.669 453,-210.5 442.408,-209.084 431.228,-207.096 420.442,-204.919"/>
+<polygon fill="#333333" stroke="#333333" points="420.767,-203.199 415.517,-203.906 420.062,-206.627 420.767,-203.199"/>
+</g>
+<!-- transition_change_order&#45;&gt;place_partially_shipped -->
+<g id="edge10" class="edge"><title>transition_change_order&#45;&gt;place_partially_shipped</title>
+<path fill="none" stroke="#333333" d="M568.256,-125.597C579.096,-122.178 590.469,-118.59 601.381,-115.148"/>
+<polygon fill="#333333" stroke="#333333" points="602.117,-116.751 606.359,-113.578 601.064,-113.413 602.117,-116.751"/>
+</g>
+</g>
+</svg>

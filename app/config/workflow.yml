@@ -1,8 +1,15 @@
-# CONSOLE COMMAND:
-# php bin/console workflow:build:svg <workflow_type>.<workflow>
+# Instructions to display a workflow:
+# 1. Define workflow below
+# 2. Create a controller_route: "/workflow" or "/whatever"
+# 3. Create an action inside this controller with its route "/descriptive_route_name"
+# 4. Insert only: return $this->render('descriptive_route_name/doc.svg.twig');
+# 5. Create empty folder in vies with the corresponding name => "descriptive_route_name"
+# 6. Execute: php bin/console workflow:build:svg <workflow_type>.<workflow>
+# 7. Call: [host]/[your_app_name]/web/app_dev.php/[controller_route]/[descriptive_route_name]
 
 # Notices:
-# - state_matchine workflows can only contain a single "to" state, but multiple "from" states
+# Workflow types: (state_machine OR workflow)
+# - state_matchines can only contain a single "to" state, but multiple "from" states
 # - workflow workflows may have multiple "to" states
 framework:
     workflows:
@@ -165,3 +172,84 @@ framework:
                 final_partial_refund:
                     from: partially_refunded
                     to: refunded
+        order_shipping_status:
+            supports:
+                - AppBundle\Entity\Order\MyOrder
+            type: state_machine
+            places:
+                - unshipped
+                - partially_shipped
+                - shipped
+            initial_place: unshipped
+            marking_store:
+                type: "single_state"
+                arguments:
+                    - 'orderStatus'
+            transitions:
+                ship:
+                    from: unshipped
+                    to: shipped
+                partial_ship:
+                    from: unshipped
+                    to: partially_shipped
+                additional_partial_ship:
+                    from: partially_shipped
+                    to: partially_shipped
+                final_ship:
+                    from: partially_shipped
+                    to: shipped
+                    # change_order scenario:
+                    # can only changed, if order-status not completed or cancelled
+                change_order:
+                    from: shipped
+                    to: partially_shipped
+        order_return_status:
+            supports:
+                - AppBundle\Entity\Order\MyOrder
+            type: state_machine
+            places:
+                - impossible
+                - possible
+                - partially_returned
+                - returned
+            initial_place: impossible
+            marking_store:
+                type: "single_state"
+                arguments:
+                    - 'orderReturnStatus'
+            transitions:
+                activate:
+                    from: impossible
+                    to: possible
+                partial_return:
+                    from: possible
+                    to: partially_returned
+                return:
+                    from: possible
+                    to: returned
+                additional_partial_return:
+                    from: partially_returned
+                    to: partially_returned
+                final_partial_return:
+                    from: partially_returned
+                    to: returned
+        order_status:
+            supports:
+                - AppBundle\Entity\Order\MyOrder
+            type: state_machine
+            places:
+                - open
+                - cancelled
+                - completed
+            initial_place: open
+            marking_store:
+                type: "single_state"
+                arguments:
+                    - 'orderStatus'
+            transitions:
+                cancel:
+                    from: open
+                    to: cancelled
+                complete:
+                    from: open
+                    to: completed

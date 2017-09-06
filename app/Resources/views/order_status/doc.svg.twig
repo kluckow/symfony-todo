@@ -1,0 +1,52 @@
+<svg class="img-responsive" id="state_machine-order_status" width="425pt" height="256pt"
+ viewBox="0.00 0.00 425.00 256.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 252)">
+<title>workflow</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-252 421,-252 421,4 -4,4"/>
+<!-- place_open -->
+<g id="node1" class="node"><title>place_open</title>
+<ellipse fill="lightblue" stroke="#333333" cx="57.5" cy="-123.5" rx="57.5" ry="57.5"/>
+<text text-anchor="middle" x="57.5" y="-121.3" font-family="Arial" font-size="9.00">open</text>
+</g>
+<!-- transition_cancel -->
+<g id="node4" class="node"><title>transition_cancel</title>
+<polygon fill="none" stroke="#333333" points="266,-248 151,-248 151,-133 266,-133 266,-248"/>
+<text text-anchor="middle" x="208.5" y="-188.3" font-family="Arial" font-size="9.00">cancel</text>
+</g>
+<!-- place_open&#45;&gt;transition_cancel -->
+<g id="edge1" class="edge"><title>place_open&#45;&gt;transition_cancel</title>
+<path fill="none" stroke="#333333" d="M110.195,-146.745C121.77,-151.95 134.159,-157.521 146.085,-162.884"/>
+<polygon fill="#333333" stroke="#333333" points="145.53,-164.553 150.808,-165.007 146.965,-161.361 145.53,-164.553"/>
+</g>
+<!-- transition_complete -->
+<g id="node5" class="node"><title>transition_complete</title>
+<polygon fill="none" stroke="#333333" points="266,-115 151,-115 151,-0 266,-0 266,-115"/>
+<text text-anchor="middle" x="208.5" y="-55.3" font-family="Arial" font-size="9.00">complete</text>
+</g>
+<!-- place_open&#45;&gt;transition_complete -->
+<g id="edge3" class="edge"><title>place_open&#45;&gt;transition_complete</title>
+<path fill="none" stroke="#333333" d="M110.613,-100.416C122.096,-95.3298 134.362,-89.8967 146.172,-84.6656"/>
+<polygon fill="#333333" stroke="#333333" points="146.985,-86.2195 150.847,-82.5944 145.567,-83.0194 146.985,-86.2195"/>
+</g>
+<!-- place_cancelled -->
+<g id="node2" class="node"><title>place_cancelled</title>
+<ellipse fill="none" stroke="#333333" cx="359.5" cy="-190.5" rx="57.5" ry="57.5"/>
+<text text-anchor="middle" x="359.5" y="-188.3" font-family="Arial" font-size="9.00">cancelled</text>
+</g>
+<!-- place_completed -->
+<g id="node3" class="node"><title>place_completed</title>
+<ellipse fill="none" stroke="#333333" cx="359.5" cy="-57.5" rx="57.5" ry="57.5"/>
+<text text-anchor="middle" x="359.5" y="-55.3" font-family="Arial" font-size="9.00">completed</text>
+</g>
+<!-- transition_cancel&#45;&gt;place_cancelled -->
+<g id="edge2" class="edge"><title>transition_cancel&#45;&gt;place_cancelled</title>
+<path fill="none" stroke="#333333" d="M266.256,-190.5C276.2,-190.5 286.593,-190.5 296.667,-190.5"/>
+<polygon fill="#333333" stroke="#333333" points="296.902,-192.25 301.902,-190.5 296.902,-188.75 296.902,-192.25"/>
+</g>
+<!-- transition_complete&#45;&gt;place_completed -->
+<g id="edge4" class="edge"><title>transition_complete&#45;&gt;place_completed</title>
+<path fill="none" stroke="#333333" d="M266.256,-57.5C276.2,-57.5 286.593,-57.5 296.667,-57.5"/>
+<polygon fill="#333333" stroke="#333333" points="296.902,-59.2501 301.902,-57.5 296.902,-55.7501 296.902,-59.2501"/>
+</g>
+</g>
+</svg>

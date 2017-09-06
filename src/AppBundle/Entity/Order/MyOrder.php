@@ -47,6 +47,27 @@ class MyOrder
      * @var string
      * @ORM\Column(type="string", nullable=true)
      */
+    private $orderStatus;
+
+    /**
+     * Marking
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $orderShippingStatus;
+
+    /**
+     * Marking
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $orderReturnStatus;
+
+    /**
+     * Marking
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
     private $workflowPaymentStatus;
 
     /**
@@ -135,6 +156,60 @@ class MyOrder
     public function setWorkflowRefundStatus($workflowRefundStatus)
     {
         $this->workflowRefundStatus = $workflowRefundStatus;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOrderStatus()
+    {
+        return $this->orderStatus;
+    }
+
+    /**
+     * @param string $orderStatus
+     * @return MyOrder
+     */
+    public function setOrderStatus($orderStatus)
+    {
+        $this->orderStatus = $orderStatus;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOrderShippingStatus()
+    {
+        return $this->orderShippingStatus;
+    }
+
+    /**
+     * @param string $orderShippingStatus
+     * @return MyOrder
+     */
+    public function setOrderShippingStatus($orderShippingStatus)
+    {
+        $this->orderShippingStatus = $orderShippingStatus;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOrderReturnStatus()
+    {
+        return $this->orderReturnStatus;
+    }
+
+    /**
+     * @param string $orderReturnStatus
+     * @return MyOrder
+     */
+    public function setOrderReturnStatus($orderReturnStatus)
+    {
+        $this->orderReturnStatus = $orderReturnStatus;
         return $this;
     }
 
